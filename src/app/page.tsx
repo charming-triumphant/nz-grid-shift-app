@@ -65,11 +65,12 @@ export default function Home() {
   const carbonSaved = (currentSettings.carbonIntensity - proposedSettings.carbonIntensity) * (activeEnergyUsageMW * 1000) / 1000; 
   const moneySaved = (currentSettings.pricePerMwh - proposedSettings.pricePerMwh) * activeEnergyUsageMW;
 
-  const actionPhrase = {
+  const actionMap: Record<string, string> = {
     SHED_LOAD: 'Reduce load',
     CONSUME_HEAVILY: 'Increase consumption',
     MAINTAIN: 'Keep current load'
-  }[currentSettings.actionSignal] || currentSettings.actionSignal.replace('_', ' ');
+  };
+  const actionPhrase = actionMap[currentSettings.actionSignal as string] || String(currentSettings.actionSignal).replace('_', ' ');
 
   return (
     <main className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans">
