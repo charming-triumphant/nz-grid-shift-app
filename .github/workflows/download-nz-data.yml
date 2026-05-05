@@ -1,0 +1,35 @@
+name: Download NZ Spot Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  download-nz-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download NZ spot data
+        run: npm run fetch-nz-data
+
+      - name: Commit updated NZ spot data
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions
+          author_email: github-actions@github-actions.iam.gserviceaccount.com
+          message: 'chore: update NZ spot data'
+          add: 'public/nz-spot-data.csv'
