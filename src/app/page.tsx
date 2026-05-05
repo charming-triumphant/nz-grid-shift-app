@@ -135,7 +135,7 @@ export default function Home() {
                 <LineChart data={weeklyForecast} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
                   <XAxis dataKey="day" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                  <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, 'Price']} />
+                  <Tooltip formatter={(value: any) => [`$${Number(value).toFixed(2)}`, 'Price']} />
                   <Line type="monotone" dataKey="pricePerMwh" stroke="#0f766e" strokeWidth={3} dot={{ r: 3, fill: '#0f766e' }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -153,7 +153,7 @@ export default function Home() {
                 <LineChart data={monthlyForecast} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
                   <XAxis dataKey="day" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                  <Tooltip formatter={(value: number) => [`$${value.toFixed(2)}`, 'Price']} />
+                  <Tooltip formatter={(value: any) => [`$${Number(value).toFixed(2)}`, 'Price']} />
                   <Line type="monotone" dataKey="pricePerMwh" stroke="#0f4365" strokeWidth={3} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
